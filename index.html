@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salah Traiteur | L'art de recevoir à l'orientale - Essaouira</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        terracotta: { DEFAULT: '#C17767', light: '#d29688', dark: '#a55e4e' },
+                        sand: '#F8F7F5',
+                        charcoal: '#1C1C1C',
+                        gold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FAFAFA; color: #1C1C1C; }
+
+        /* Smooth UI/UX Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+
+        /* Arch Image Reveal */
+        .arch-mask {
+            clip-path: ellipse(100% 100% at 50% 100%);
+            transition: clip-path 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .arch-mask.is-visible {
+            clip-path: ellipse(100% 100% at 50% 50%);
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Premium button hover */
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            background: #1C1C1C;
+            color: #fff;
+            transition: color 0.4s ease;
+            z-index: 1;
+        }
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #C17767;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+        .btn-luxury:hover::before { transform: translateY(0); }
+
+        /* Subtle parallax image zoom */
+        .img-zoom-wrapper { overflow: hidden; }
+        .img-zoom-wrapper img {
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-zoom-wrapper:hover img { transform: scale(1.05); }
+
+    </style>
+</head>
+<body class="antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- Navbar glassmorphism -->
+    <nav class="fixed w-full z-50 transition-all duration-500 py-5 px-6 md:px-12 backdrop-blur-xl bg-white/70 border-b border-gray-100/50" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-serif text-2xl font-semibold tracking-wide text-charcoal flex items-center gap-2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C17767" stroke-width="1.5"><path d="M12 2L2 22h20L12 2z"/></svg>
+                Salah <span class="text-terracotta italic font-medium">Traiteur</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-12 text-sm font-medium tracking-widest uppercase text-charcoal/70">
+                <a href="#propos" class="hover:text-terracotta transition-colors">À Propos</a>
+                <a href="#services" class="hover:text-terracotta transition-colors">Services</a>
+                <a href="#avis" class="hover:text-terracotta transition-colors">Avis</a>
+            </div>
+
+            <a href="#contact" class="hidden md:inline-flex btn-luxury items-center justify-center px-8 py-3 text-xs tracking-[0.2em] uppercase rounded-full">
+                Contactez-nous
+            </a>
+        </div>
+    </nav>
+
+    <!-- Split Screen Hero Section -->
+    <header class="relative min-h-screen flex items-center pt-24 pb-12 px-6 md:px-12 bg-white overflow-hidden">
+        
+        <!-- Background subtle pattern -->
+        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#e5e7eb 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center relative z-10">
+            
+            <!-- Left Text -->
+            <div class="fade-in-up order-2 lg:order-1 pt-12 lg:pt-0">
+                <p class="text-terracotta font-medium tracking-[0.2em] text-xs uppercase mb-6 flex items-center gap-4">
+                    <span class="w-8 h-[1px] bg-terracotta"></span>
+                    Essaouira, Maroc
+                </p>
+                <h1 class="font-serif text-5xl md:text-7xl xl:text-8xl text-charcoal leading-[1.1] mb-8">
+                    L'art de recevoir <br>
+                    <span class="italic text-gray-400 font-light text-4xl md:text-6xl">&</span> <span class="text-terracotta">à l'orientale</span>.
+                </h1>
+                <p class="text-gray-500 font-light text-lg md:text-xl max-w-lg mb-12 leading-relaxed">
+                    L'excellence de la gastronomie et de l'hospitalité marocaine, sublimée pour vos événements les plus prestigieux.
+                </p>
+                
+                <div class="flex items-center gap-6">
+                    <a href="#contact" class="btn-luxury inline-flex px-10 py-4 text-xs tracking-widest uppercase rounded-full shadow-2xl">
+                        Demander un Devis
+                    </a>
+                    <a href="#services" class="text-xs uppercase tracking-widest font-medium text-charcoal hover:text-terracotta px-4 py-4 transition-colors">
+                        Découvrir
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Image (Generated Moroccan Heritage Image) -->
+            <div class="order-1 lg:order-2 flex justify-center lg:justify-end relative h-[60vh] lg:h-[80vh] w-full">
+                <!-- Use the generated image -->
+                <div class="w-full h-full max-w-[500px] arch-mask overflow-hidden rounded-t-full shadow-2xl relative fade-in-up">
+                    <img src="file:///Users/saad-mac/.gemini/antigravity/brain/01ff08cd-24ac-4196-9373-2d91c21d59a6/moroccan_hero_bg_1776184198233.png" 
+                         alt="Prestige Moroccan Event" 
+                         class="w-full h-full object-cover">
+                    <!-- Subtle overlay gradient inside the image -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+                <!-- Decorative Elements -->
+                <div class="absolute top-1/4 -left-12 w-32 h-32 bg-terracotta/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-1/4 -right-12 w-48 h-48 bg-gold/10 rounded-full blur-3xl"></div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- À Propos Section with Overlapping images UI -->
+    <section id="propos" class="py-24 md:py-40 bg-sand relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <!-- Staggered images left -->
+            <div class="lg:col-span-6 relative h-[500px] fade-in-up">
+                <div class="absolute top-0 left-0 w-3/4 h-[400px] img-zoom-wrapper rounded-2xl shadow-xl overflow-hidden z-10">
+                    <img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=800" alt="Moroccan Riad Architecture" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute bottom-0 right-0 w-3/5 h-[350px] img-zoom-wrapper rounded-2xl shadow-2xl overflow-hidden z-20 border-8 border-sand">
+                    <img src="https://images.unsplash.com/photo-1596450514735-111a2fe02935?auto=format&fit=crop&q=80&w=800" alt="Mint Tea Moroccan Heritage" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Text Content Right -->
+            <div class="lg:col-span-6 lg:pl-12 fade-in-up stagger-1">
+                <div class="w-12 h-[1px] bg-terracotta mb-8"></div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal mb-8 leading-tight">L'héritage d'une 
+                    <span class="italic text-terracotta font-light">réception de prestige</span>
+                </h2>
+                <p class="text-gray-600 font-light text-lg leading-loose mb-8">
+                    Spécialistes des événements d'exception, nous orchestrons avec passion et rigueur vos événements étalés sur plusieurs jours. 
+                </p>
+                <p class="text-gray-600 font-light text-lg leading-loose mb-10">
+                    Que ce soit pour l'ouverture majestueuse d'un riad ou la célébration d'un mariage traditionnel marocain, <strong class="font-medium text-charcoal">Salah Traiteur</strong> déploie un savoir-faire authentique pour faire de chaque instant un souvenir inoubliable, où l'élégance se mêle subtilement aux traditions.
+                </p>
+                
+                <!-- Small numbers feature -->
+                <div class="grid grid-cols-2 gap-8 pt-8 border-t border-gray-200">
+                    <div>
+                        <span class="font-serif text-4xl text-terracotta block mb-2">15+</span>
+                        <span class="text-xs uppercase tracking-widest text-charcoal/60 font-medium">Années d'excellence</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-4xl text-terracotta block mb-2">100%</span>
+                        <span class="text-xs uppercase tracking-widest text-charcoal/60 font-medium">Sur-mesure</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 md:py-40 px-6 md:px-12 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-24 fade-in-up flex flex-col items-center">
+                <span class="text-terracotta font-medium tracking-[0.2em] text-xs uppercase mb-4 block">Notre Offre</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-charcoal">Prestations Sur-Mesure</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 h-[500px] fade-in-up stagger-1">
+                    <div class="absolute inset-0 img-zoom-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800" alt="Buffets de Prestige" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 p-10 flex flex-col justify-end text-white glass-panel opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-20 m-2">
+                        <span class="text-terracotta font-semibold tracking-widest text-xs uppercase mb-2">Gastronomie</span>
+                        <h3 class="font-serif text-2xl mb-4">Buffets de Prestige</h3>
+                        <p class="font-light leading-relaxed text-sm text-charcoal/80">
+                            Des mets raffinés et généreux, célébrant la richesse de la gastronomie orientale, adaptés à vos envies et dressés avec une élégance absolue.
+                        </p>
+                    </div>
+
+                    <div class="absolute bottom-10 left-10 right-10 group-hover:opacity-0 transition-opacity duration-500 z-10">
+                        <h3 class="font-serif text-3xl text-white">01. Buffets de Prestige</h3>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 h-[500px] fade-in-up stagger-2">
+                    <div class="absolute inset-0 img-zoom-wrapper">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800" alt="Location de Matériel" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 p-10 flex flex-col justify-end text-white glass-panel opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-20 m-2">
+                        <span class="text-terracotta font-semibold tracking-widest text-xs uppercase mb-2">Logistique</span>
+                        <h3 class="font-serif text-2xl mb-4">Location de Matériel</h3>
+                        <p class="font-light leading-relaxed text-sm text-charcoal/80">
+                            Mobilier et accessoires d'exception : vaisselle fine, tentes caïdales authentiques, tables et chaises soigneusement sélectionnées et entretenues.
+                        </p>
+                    </div>
+
+                    <div class="absolute bottom-10 left-10 right-10 group-hover:opacity-0 transition-opacity duration-500 z-10">
+                        <h3 class="font-serif text-3xl text-white">02. Matériel & Tentes</h3>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group relative rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 h-[500px] fade-in-up stagger-3">
+                    <div class="absolute inset-0 img-zoom-wrapper">
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=800" alt="Personnel Qualifié" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/40 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 p-10 flex flex-col justify-end text-white glass-panel opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl z-20 m-2">
+                        <span class="text-terracotta font-semibold tracking-widest text-xs uppercase mb-2">Service</span>
+                        <h3 class="font-serif text-2xl mb-4">Personnel Qualifié</h3>
+                        <p class="font-light leading-relaxed text-sm text-charcoal/80">
+                            Une équipe discrète, dévouée et souriante. Nos serveurs et plongeurs sont rigoureusement formés pour assurer un service fluide et irréprochable.
+                        </p>
+                    </div>
+
+                    <div class="absolute bottom-10 left-10 right-10 group-hover:opacity-0 transition-opacity duration-500 z-10">
+                        <h3 class="font-serif text-3xl text-white">03. Personnel Qualifié</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Avis Section with Dark Mode Premium UI -->
+    <section id="avis" class="py-24 md:py-40 px-6 md:px-12 bg-[#171717] relative overflow-hidden">
+        <!-- Abstract geometric decoration -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full border-[1px] border-white/5 -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[800px] h-[800px] rounded-full border-[1px] border-white/5 translate-y-1/3 -translate-x-1/4"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            <div class="lg:col-span-4 fade-in-up">
+                <span class="text-terracotta font-medium tracking-[0.2em] text-xs uppercase mb-4 block">Ce qu'ils disent</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-white mb-8">Témoignages de nos clients</h2>
+                <div class="w-16 h-[2px] bg-terracotta opacity-50 mb-8"></div>
+                <p class="font-light text-gray-400 text-sm leading-loose">
+                    La satisfaction de nos hôtes est notre plus grande récompense. Découvrez l'expérience Salah Traiteur à travers leurs mots.
+                </p>
+            </div>
+
+            <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
+                
+                <!-- Testimonials UI Cards -->
+                <div class="bg-white/[0.03] backdrop-blur-sm border border-white/[0.05] p-10 rounded-2xl md:mt-12 fade-in-up stagger-1 hover:bg-white/[0.05] transition-colors">
+                    <div class="text-terracotta mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
+                    </div>
+                    <p class="font-light text-gray-300 leading-relaxed mb-8 italic text-sm">
+                        "Un immense merci à Salah pour son service exceptionnel... l’équipe a fait preuve d’un professionnalisme hors pair."
+                    </p>
+                    <div>
+                        <span class="font-serif text-white font-medium block">Riad le Myrath</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider">Client Événement</span>
+                    </div>
+                </div>
+
+                <div class="bg-white/[0.03] backdrop-blur-sm border border-white/[0.05] p-10 rounded-2xl fade-in-up stagger-2 hover:bg-white/[0.05] transition-colors">
+                    <div class="text-terracotta mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
+                    </div>
+                    <p class="font-light text-gray-300 leading-relaxed mb-8 italic text-sm">
+                        "Trois jours de fête, serveurs et plongeurs, mobilier, vaisselle... Parfait. Je recommande vivement leurs services."
+                    </p>
+                    <div>
+                        <span class="font-serif text-white font-medium block">Juliette T</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider">Mariage Privé</span>
+                    </div>
+                </div>
+
+                <div class="bg-white/[0.03] backdrop-blur-sm border border-white/[0.05] p-10 rounded-2xl md:mt-12 sm:col-span-2 lg:col-span-1 fade-in-up stagger-3 hover:bg-white/[0.05] transition-colors">
+                    <div class="text-terracotta mb-6">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z"/></svg>
+                    </div>
+                    <p class="font-light text-gray-300 leading-relaxed mb-8 italic text-sm">
+                        "Un buffet superbe, un personnel professionnel et charmant ! Un matériel en très bon état."
+                    </p>
+                    <div>
+                        <span class="font-serif text-white font-medium block">Marie-Stéphane MANUEL</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider">Réception</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Elevated Contact Section -->
+    <section id="contact" class="py-0 relative overflow-hidden bg-white">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            
+            <!-- Left Info Panel -->
+            <div class="px-6 md:px-20 py-24 md:py-40 flex flex-col justify-center fade-in-up">
+                <span class="text-terracotta font-medium tracking-[0.2em] text-xs uppercase mb-4 block">Nous Contacter</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-charcoal mb-10 leading-tight">Organisons ensemble <br><span class="italic font-light">l'inoubliable</span>.</h2>
+                
+                <div class="space-y-12">
+                    <div class="group flex gap-6 items-start">
+                        <div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-terracotta group-hover:bg-terracotta group-hover:text-white transition-all duration-300 shrink-0">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold tracking-widest text-charcoal/50 uppercase mb-2">Adresse de Prestige</h4>
+                            <p class="text-charcoal font-light leading-relaxed">
+                                Palais de congrès, 02 Rue Gharnata<br>
+                                Essaouira 44000<br>
+                                <span class="text-gray-400 text-sm">(Complexe Commercial Bin Al Aswar)</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group flex gap-6 items-start">
+                        <div class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-terracotta group-hover:bg-terracotta group-hover:text-white transition-all duration-300 shrink-0">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-semibold tracking-widest text-charcoal/50 uppercase mb-2">Ligne Directe</h4>
+                            <p class="text-charcoal font-serif text-2xl">06 62 85 05 98</p>
+                            <p class="text-gray-400 text-sm mt-1 font-light">Ouvert aujourd'hui jusqu'à 17:00</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16">
+                    <a href="tel:0662850598" class="btn-luxury inline-flex px-12 py-5 text-xs tracking-widest uppercase rounded-full w-max">
+                        Appeler notre équipe
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Image Cover -->
+            <div class="h-[60vh] lg:h-auto w-full relative">
+                <div class="absolute inset-0 bg-charcoal/20 z-10 mix-blend-multiply"></div>
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200" alt="Essaouira Event Venue" class="w-full h-full object-cover">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Refined Footer -->
+    <footer class="py-10 border-t border-gray-100 bg-sand text-center">
+        <p class="text-gray-400 text-xs tracking-widest uppercase font-medium">
+            &copy; 2026 Salah Traiteur. Tous droits réservés. L'art de l'événementiel au Maroc.
+        </p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up, .arch-mask').forEach(el => observer.observe(el));
+            
+            // Navbar blur effect on scroll
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    nav.classList.add('bg-white/80', 'shadow-sm');
+                    nav.classList.remove('bg-white/70');
+                } else {
+                    nav.classList.remove('bg-white/80', 'shadow-sm');
+                    nav.classList.add('bg-white/70');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
